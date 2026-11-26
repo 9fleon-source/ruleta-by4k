@@ -3,192 +3,696 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidad — Ruleta By4K</title>
+  <title>Ruleta By4K — El Juego Social de Retos para Fiestas y Bares VIP</title>
+  <meta name="description" content="Gira la ruleta, supera retos sociales épicos con 4 voces reales y vive la Zona VIP gratis en bares aliados. Disponible en Google Play (+18).">
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
     :root {
-      --bg: #0b0d14;
-      --card: #141826;
-      --border: #252c44;
-      --text: #e8ecf4;
-      --muted: #9aa5be;
-      --accent: #00f0ff;
-      --accent2: #ff2a85;
+      --bg-deep: #070811;
+      --bg-card: rgba(19, 23, 39, 0.86);
+      --bg-card-strong: #151a2e;
+      --border: rgba(255, 255, 255, 0.1);
+      --cyan: #00f0ff;
+      --magenta: #ff2ae5;
+      --gold: #ffb800;
+      --green: #00ff88;
+      --text: #f3f6fc;
+      --muted: #9ba7c2;
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(circle at top, #171d33 0%, var(--bg) 60%);
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(255, 42, 229, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 85% 12%, rgba(0, 240, 255, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 50% 80%, rgba(255, 184, 0, 0.10) 0%, transparent 48%);
       color: var(--text);
-      line-height: 1.65;
-      padding: 32px 16px 64px;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
-    .container {
-      max-width: 820px;
-      margin: 0 auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 36px 28px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-    }
-    .badge {
-      display: inline-block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-      background: rgba(0, 240, 255, 0.08);
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 1.9rem;
-      color: #ffffff;
-    }
-    .meta {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 28px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    h2 {
-      color: var(--accent);
-      font-size: 1.2rem;
-      margin-top: 28px;
-      margin-bottom: 10px;
-    }
-    p, li {
-      color: var(--text);
-      font-size: 0.98rem;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 8px;
-    }
-    .highlight {
-      background: rgba(255, 42, 133, 0.08);
-      border-left: 3px solid var(--accent2);
-      padding: 14px 18px;
-      border-radius: 8px;
-      margin: 20px 0;
-    }
+
     a {
-      color: var(--accent);
+      color: inherit;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 8, 17, 0.82);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+    }
+
+    .brand span {
+      background: linear-gradient(90deg, var(--cyan), var(--magenta), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .age-pill {
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 184, 0, 0.45);
+      color: var(--gold);
+      background: rgba(255, 184, 0, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 68px 0 56px;
+      text-align: center;
+    }
+
+    .logo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 26px;
+    }
+
+    .logo-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -14px;
+      border-radius: 38px;
+      background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--gold), var(--green), var(--cyan));
+      filter: blur(24px);
+      opacity: 0.55;
+      z-index: -1;
+      animation: pulseGlow 5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      from { opacity: 0.42; transform: scale(0.97); }
+      to { opacity: 0.72; transform: scale(1.04); }
+    }
+
+    .hero-logo {
+      width: 168px;
+      height: 168px;
+      border-radius: 34px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      display: block;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--cyan);
+      background: rgba(0, 240, 255, 0.09);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.12;
+      font-weight: 900;
+      max-width: 820px;
+      margin: 0 auto 18px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--green), var(--cyan), var(--magenta), var(--gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      max-width: 670px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 26px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00e5ff 0%, #c82aff 55%, #ff9900 100%);
+      color: #060812;
+      box-shadow: 0 10px 30px rgba(200, 42, 255, 0.38);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 24px rgba(255, 184, 0, 0.18);
+    }
+
+    /* Sections */
+    section {
+      padding: 58px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.65rem, 3.4vw, 2.3rem);
+      margin-bottom: 10px;
+      font-weight: 850;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    /* Feature Grid */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px 22px;
+      transition: border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .card-icon {
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    /* Pricing / Plans */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .plan-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .plan-card.featured {
+      background: linear-gradient(180deg, rgba(28, 20, 56, 0.95) 0%, rgba(18, 22, 38, 0.95) 100%);
+      border: 1.5px solid var(--magenta);
+      box-shadow: 0 16px 44px rgba(255, 42, 229, 0.22);
+    }
+
+    .plan-badge {
+      position: absolute;
+      top: -13px;
+      right: 22px;
+      background: linear-gradient(90deg, var(--magenta), var(--gold));
+      color: #090910;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .plan-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .plan-price small {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .plan-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding-bottom: 18px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .plan-list {
+      list-style: none;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .plan-list li {
+      font-size: 0.93rem;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .check {
+      color: var(--green);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .transparency-note {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 14px 18px;
+      border-radius: 14px;
+    }
+
+    /* B2B Bars Section */
+    .vip-banner {
+      background: linear-gradient(135deg, rgba(25, 19, 46, 0.95), rgba(14, 28, 42, 0.95));
+      border: 1px solid rgba(255, 184, 0, 0.38);
+      border-radius: 26px;
+      padding: 42px 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .vip-tag {
+      display: inline-block;
+      color: var(--gold);
+      border: 1px solid rgba(255, 184, 0, 0.45);
+      background: rgba(255, 184, 0, 0.1);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 14px;
+    }
+
+    .vip-banner h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+
+    .vip-banner p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .vip-points {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .vip-points li {
+      font-size: 0.95rem;
+    }
+
+    .vip-cta-box {
+      background: rgba(7, 8, 17, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .vip-cta-box h3 {
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .vip-cta-box p {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
     footer {
-      margin-top: 36px;
-      padding-top: 20px;
       border-top: 1px solid var(--border);
+      padding: 38px 0 48px;
+      margin-top: 30px;
       color: var(--muted);
       font-size: 0.88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .legal-box {
+      font-size: 0.8rem;
+      color: #7e8aa6;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 16px;
       text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .vip-banner {
+        grid-template-columns: 1fr;
+        padding: 30px 22px;
+      }
+      .nav-links a.hide-mobile {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="container">
-    <span class="badge">Documento Oficial</span>
-    <h1>Política de Privacidad — Ruleta By4K</h1>
-    <div class="meta">
-      <strong>Desarrollador:</strong> By4K &nbsp;|&nbsp;
-      <strong>Paquete Android:</strong> <code>com.by4k.ruletasocial</code> &nbsp;|&nbsp;
-      <strong>Última actualización:</strong> 25 de noviembre de 2026
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">
+        <img src="logo.png" alt="Logo Ruleta By4K">
+        <span>Ruleta By4K</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#funciones" class="hide-mobile">Funciones</a>
+        <a href="#planes" class="hide-mobile">Planes</a>
+        <a href="#bares" class="hide-mobile">Zona VIP Bares</a>
+        <a href="privacidad.html">Privacidad</a>
+        <span class="age-pill">+18</span>
+      </nav>
     </div>
+  </header>
 
-    <p>
-      <strong>By4K</strong> ("nosotros", "nuestro") desarrolla y opera la aplicación móvil y aplicación web progresiva
-      <strong>Ruleta By4K</strong>. Esta Política de Privacidad explica de manera clara y transparente cómo se maneja la
-      información cuando utilizas nuestra aplicación.
-    </p>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Icono Oficial Ruleta By4K" class="hero-logo">
+        </div>
+        <div>
+          <span class="eyebrow">🎉 Juego Social para Adultos (+18)</span>
+        </div>
+        <h1>
+          Prende cualquier reunión con <span class="gradient-text">Ruleta By4K</span>
+        </h1>
+        <p>
+          Gira la ruleta con físicas reales, supera retos sociales, confesiones y dinámicas picantes narradas por
+          4 voces humanas reales — en casa sin internet o gratis en la Zona VIP de nuestros bares aliados.
+        </p>
+        <div class="cta-group">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.by4k.ruletasocial" target="_blank" rel="noopener">
+            ▶ Descargar en Google Play
+          </a>
+          <a class="btn btn-secondary" href="#bares">
+            👑 Soy Dueño de Bar (Zona VIP)
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <h2>1. Información Personal y Funcionamiento Local</h2>
-    <p>
-      <strong>Ruleta By4K no exige crear cuentas de usuario ni recopila, vende ni comparte datos personales identificables</strong>
-      (como nombre real, documento de identidad, correo electrónico personal, dirección física, contactos o ubicación GPS) en servidores externos.
-    </p>
-    <p>
-      Los apodos de jugadores, salas de juego, retos personalizados, fotografías de avatar y notas de voz cortas que los participantes
-      decidan crear durante una partida se almacenan <strong>exclusivamente de forma local en el dispositivo del usuario</strong> (o de forma
-      temporal en la memoria de sesión del navegador en el caso de la versión web VIP).
-    </p>
+    <!-- FUNCIONES -->
+    <section id="funciones">
+      <div class="container">
+        <div class="section-header">
+          <h2>Diseñada para que nadie se quede mirando el celular</h2>
+          <p>Todo ocurre alrededor de la mesa con audio envolvente, humor y dinámicas grupales instantáneas.</p>
+        </div>
+        <div class="grid-4">
+          <div class="card">
+            <span class="card-icon">🎙️</span>
+            <h3>4 Voces Reales + Notas de Voz</h3>
+            <p>Julio, Mateo, Sofía y Valeria narran cada reto en voz alta después de sonar el saludo grabado por el jugador ganador.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🍸</span>
+            <h3>3 Niveles de Intensidad</h3>
+            <p>Escala la noche a tu ritmo desde <strong>Chill</strong> y <strong>Calentando</strong> hasta <strong>Rave</strong>, con Modo Eliminación y comodines.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌙</span>
+            <h3>Día, Noche y Neón Rave</h3>
+            <p>Interfaz intuitiva con 8 sonidos de giro, fotos de participantes y funcionamiento 100% offline en Android.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏆</span>
+            <h3>Podio &amp; Hall of Fame</h3>
+            <p>Al cerrar la noche descubre quién fue el Alma de la Fiesta, el Tanque de la Noche y el Sobreviviente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <h2>2. Uso de Permisos del Dispositivo</h2>
-    <p>Para ofrecer sus funciones interactivas opcionales, la aplicación puede solicitar los siguientes permisos en tu dispositivo:</p>
-    <ul>
-      <li><strong>Cámara (<code>CAMERA</code>):</strong> Se utiliza únicamente cuando el usuario decide tomar una fotografía de perfil para un participante en la ruleta o escanear un código QR físico en un establecimiento aliado (Zona VIP). Las imágenes y lecturas de cámara se procesan en el dispositivo y nunca se suben a servidores externos.</li>
-      <li><strong>Micrófono (<code>RECORD_AUDIO</code>):</strong> Se utiliza únicamente en la aplicación móvil cuando un participante decide grabar de forma voluntaria un saludo o audio corto (máximo 10 segundos) para su turno. Dichos archivos de audio permanecen guardados localmente en el teléfono.</li>
-      <li><strong>Fotos y Multimedia (Galería):</strong> Se utiliza únicamente si el usuario elige seleccionar una imagen de su galería como avatar de participante o fondo visual personalizado.</li>
-      <li><strong>Internet:</strong> Se utiliza de forma opcional para verificar compras en Google Play, consultar el directorio público de establecimientos aliados, mostrar el anuncio promocional informativo del mes, sintetizar voces y registrar estadísticas anónimas de uso en sesiones B2B.</li>
-    </ul>
+    <!-- PLANES TRANSPARENTES -->
+    <section id="planes">
+      <div class="container">
+        <div class="section-header">
+          <h2>Planes 100% Claros, Sin Sorpresas</h2>
+          <p>Descárgala gratis y elige cómo jugar tus fiestas personales. Las compras se procesan de forma segura únicamente a través de Google Play.</p>
+        </div>
 
-    <h2>3. Compras Integradas y Pagos (Google Play Billing)</h2>
-    <p>
-      En la versión Android distribuida a través de Google Play Store, el desbloqueo opcional de funciones adicionales
-      (como pases temporales o Modo Fiesta PRO) se procesa <strong>exclusivamente mediante el sistema oficial de Facturación de Google Play (Google Play Billing)</strong>.
-      By4K no solicita, procesa ni almacena datos de tarjetas bancarias, cuentas financieras ni credenciales de medios de pago.
-    </p>
+        <div class="grid-3">
+          <!-- Gratis -->
+          <div class="plan-card">
+            <div class="plan-name">Nivel 1 • Rompehielos</div>
+            <div class="plan-price">Gratis <small>siempre</small></div>
+            <div class="plan-desc">Ideal para armar el parche, probar la ruleta y jugar en bares aliados.</div>
+            <ul class="plan-list">
+              <li><span class="check">✓</span> <span>Selección de 27 retos oficiales para prender el ambiente.</span></li>
+              <li><span class="check">✓</span> <span>Temas Día, Noche y Neón integrados + modo Solo Sorteo.</span></li>
+              <li><span class="check">✓</span> <span>2 voces reales incluidas (Julio y Sofía) + notas de voz.</span></li>
+              <li><span class="check">✓</span> <span>Hasta 3 retos personalizados por sala.</span></li>
+              <li><span class="check">✓</span> <span><strong>Acceso 100% gratis a Zona VIP</strong> escaneando el QR en bares aliados.</span></li>
+            </ul>
+          </div>
 
-    <h2>4. Estadísticas Operativas Anónimas (Modo Zona VIP en Establecimientos)</h2>
-    <p>
-      Cuando los usuarios activan de forma gratuita el módulo <strong>Zona VIP</strong> escaneando el código QR de un establecimiento comercial aliado,
-      la aplicación envía métricas operativas agregadas y estrictamente anónimas vinculadas al identificador comercial del establecimiento
-      (como cantidad total de giros de la sesión, duración de la sesión e interacciones de mesa). Estos registros <strong>no incluyen nombres,
-      correos electrónicos, fotografías, audios ni identificadores personales de los jugadores</strong>.
-    </p>
+          <!-- Pase 48h -->
+          <div class="plan-card">
+            <div class="plan-name">Nivel 2 • Pase Fin de Semana</div>
+            <div class="plan-price">$4.000 <small>COP / 48 horas</small></div>
+            <div class="plan-desc">Perfecto para desbloquear absolutamente todo durante una fiesta o viaje de fin de semana.</div>
+            <ul class="plan-list">
+              <li><span class="check">✓</span> <span><strong>100% del catálogo (90 retos)</strong> desbloqueado por 48 horas.</span></li>
+              <li><span class="check">✓</span> <span><strong>Modo Picante activado directo</strong> (sin necesidad de códigos QR).</span></li>
+              <li><span class="check">✓</span> <span>Las <strong>4 voces reales completas</strong> (incluye Mateo y Valeria).</span></li>
+              <li><span class="check">✓</span> <span>Hasta 25 retos personalizados por sala.</span></li>
+              <li><span class="check">✓</span> <span>Sin banner promocional al abrir la app.</span></li>
+            </ul>
+          </div>
 
-    <h2>5. Contenido Promocional y Enlaces Externos</h2>
-    <p>
-      La aplicación puede mostrar un banner informativo o promocional de establecimientos y eventos aliados, así como enlaces opcionales
-      a perfiles públicos en redes sociales (por ejemplo, Instagram) o a Google Play Store. Al pulsar dichos enlaces externos, el usuario
-      abandona la aplicación y queda sujeto a las políticas de privacidad de la plataforma externa correspondiente.
-    </p>
+          <!-- PRO Indefinido -->
+          <div class="plan-card featured">
+            <span class="plan-badge">Mejor Valor</span>
+            <div class="plan-name">Nivel 2 • Modo Fiesta PRO</div>
+            <div class="plan-price">$9.900 <small>COP / pago único</small></div>
+            <div class="plan-desc">Un solo pago en tu cuenta de Google Play para tener la experiencia completa sin límite de tiempo.</div>
+            <ul class="plan-list">
+              <li><span class="check">✓</span> <span><strong>Los 90 retos completos para siempre</strong> en tus fiestas en casa.</span></li>
+              <li><span class="check">✓</span> <span><strong>Modo Picante integrado sin QR</strong> de forma permanente.</span></li>
+              <li><span class="check">✓</span> <span>Las <strong>4 voces reales completas</strong> desbloqueadas.</span></li>
+              <li><span class="check">✓</span> <span>Hasta 25 retos personalizados y cero banner de apertura.</span></li>
+              <li><span class="check">✓</span> <span>Restauración automática de tu compra si cambias de teléfono Android.</span></li>
+            </ul>
+          </div>
+        </div>
 
-    <h2>6. Público Objetivo (+18) y Privacidad de Menores</h2>
-    <div class="highlight">
-      <strong>Exclusivo para mayores de edad (18+):</strong> Ruleta By4K es un juego social de entretenimiento diseñado estrictamente
-      para adultos mayores de 18 años. Promovemos el consumo responsable y moderado. No dirigimos nuestra aplicación a niños ni menores
-      de edad, ni recopilamos intencionalmente información de menores de 18 años.
-    </div>
+        <div class="transparency-note">
+          💡 <strong>Transparencia total:</strong> Las compras en Google Play desbloquean el <strong>Modo Fiesta Completo</strong> para tus reuniones personales.
+          El modo <strong>Zona VIP de Bares</strong> no tiene ningún costo para el público y se activa escaneando el código QR físico en las mesas de los establecimientos aliados.
+        </div>
+      </div>
+    </section>
 
-    <h2>7. Retención y Eliminación de Datos</h2>
-    <p>
-      Dado que los perfiles de sala, fotografías y notas de voz de juego se guardan únicamente en el almacenamiento local del dispositivo,
-      el usuario tiene control total sobre ellos en todo momento: puede eliminar participantes o salas dentro de la aplicación, borrar los
-      datos de almacenamiento de la app en los ajustes de Android o desinstalar la aplicación, lo cual elimina de forma inmediata y definitiva
-      toda la información local. En la versión web VIP, los datos temporales de sesión se eliminan automáticamente al expirar la sesión.
-    </p>
-
-    <h2>8. Cambios a esta Política de Privacidad</h2>
-    <p>
-      Podemos actualizar esta Política de Privacidad ocasionalmente para reflejar mejoras técnicas o requisitos normativos. Publicaremos
-      cualquier versión actualizada en esta misma dirección URL indicando la fecha de última actualización.
-    </p>
-
-    <h2>9. Contacto</h2>
-    <p>
-      Si tienes preguntas, solicitudes o comentarios sobre esta Política de Privacidad o el tratamiento de datos en <strong>Ruleta By4K</strong>,
-      puedes comunicarte directamente con nosotros en:
-    </p>
-    <ul>
-      <li><strong>Desarrollador:</strong> By4K</li>
-      <li><strong>Correo electrónico de soporte y privacidad:</strong> <a href="mailto:by4kinc@gmail.com">by4kinc@gmail.com</a></li>
-    </ul>
-
-    <footer>
-      &copy; 2026 By4K — Todos los derechos reservados. Juego social para mayores de 18 años.
-    </footer>
+    <!-- ZONA VIP BARES B2B -->
+    <section id="bares">
+      <div class="container">
+        <div class="vip-banner">
+          <div>
+            <span class="vip-tag">👑 Solución B2B para Establecimientos</span>
+            <h2>Lleva la Zona VIP de Ruleta By4K a las mesas de tu Bar</h2>
+            <p>
+              Convierte cada mesa en una experiencia interactiva que eleva la permanencia, dinamiza el consumo y posiciona tu marca en redes sociales.
+            </p>
+            <ul class="vip-points">
+              <li>✨ <strong>420 retos modulares VIP:</strong> Adaptados a tus cócteles insignia, cervezas, snacks y amenidades (bolirana, billar, karaoke, dardos y más).</li>
+              <li>📱 <strong>Gratis para tus clientes (Android &amp; Web VIP):</strong> Tus mesas escanean el QR firmado de tu local (sesiones configurables de 3h, 4h o 12h) sin pagar nada.</li>
+              <li>📊 <strong>Métricas operativas y Fichas Físicas:</strong> Control de giros por sesión, integración con carné QR de meseros y presencia en nuestro directorio oficial de Bares Aliados.</li>
+            </ul>
+          </div>
+          <div class="vip-cta-box">
+            <h3>¿Quieres afiliar tu Bar o Evento?</h3>
+            <p>Escríbenos directamente para conocer la demostración en vivo y activar los códigos QR personalizados de tu establecimiento.</p>
+            <a class="btn btn-primary" href="mailto:by4kinc@gmail.com?subject=Informacion%20Alianza%20Zona%20VIP%20-%20Ruleta%20By4K">
+              ✉️ Contactar a By4K
+            </a>
+            <p style="margin-top: 14px; margin-bottom: 0; font-size: 0.84rem; color: var(--muted);">
+              Correo directo: <strong>by4kinc@gmail.com</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <strong>Ruleta By4K</strong> — Desarrollado por <strong>By4K</strong>
+        </div>
+        <div class="footer-links">
+          <a href="privacidad.html">Política de Privacidad</a>
+          <a href="mailto:by4kinc@gmail.com">Soporte: by4kinc@gmail.com</a>
+        </div>
+      </div>
+      <div class="legal-box">
+        <strong>Aviso de Consumo Responsable (+18):</strong> Aplicación de entretenimiento social exclusiva para mayores de 18 años.
+        El exceso de alcohol es perjudicial para la salud (Ley 30 de 1986). Prohíbase el expendio de bebidas embriagantes a menores de edad (Ley 124 de 1994).
+        Juega siempre con moderación. &copy; 2026 By4K.
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
