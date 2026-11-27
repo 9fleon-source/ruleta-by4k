@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Ruleta By4K VIP — Zona Exclusiva Bares Aliados</title>
+  <meta name="description" content="Zona VIP oficial de Ruleta By4K para bares aliados. Escanea el QR de tu mesa y juega gratis (+18).">
+  <meta name="theme-color" content="#070811">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ruleta By4K VIP">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <style>
+    :root {
+      --bg: #050509;
+      --surface: #111524;
+      --surface-2: #192036;
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f8fafc;
+      --subtext: #94a3b8;
+      --pink: #ff007f;
+      --cyan: #00f0ff;
+      --gold: #ffd700;
+      --green: #00ff88;
+      --purple: #8b5cf6;
+      --danger: #ff4455;
+    }
+    body.theme-day {
+      --bg: #f1f5f9;
+      --surface: #ffffff;
+      --surface-2: #e2e8f0;
+      --border: #cbd5e1;
+      --text: #0f172a;
+      --subtext: #475569;
+    }
+    body.theme-night {
+      --bg: #0b0f17;
+      --surface: #1e293b;
+      --surface-2: #27354d;
+      --border: #334155;
+      --text: #f8fafc;
+      --subtext: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      user-select: none;
+    }
+
+    /* Aviso Navegador Embebido (Instagram / WhatsApp) */
+    .inapp-banner {
+      display: none;
+      background: linear-gradient(90deg, #b45309, #dc2626);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+      text-align: center;
+      z-index: 90;
+      position: relative;
+    }
+
+    /* Pantalla Compuerta VIP y Pantalla de Cierre 00:00 */
+    .full-screen-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      overflow-y: auto;
+      padding: env(safe-area-inset-top, 14px) 16px calc(env(safe-area-inset-bottom, 16px) + 20px);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(255, 0, 127, 0.16), transparent 40%),
+        radial-gradient(circle at 84% 16%, rgba(0, 240, 255, 0.15), transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(255, 215, 0, 0.12), transparent 45%),
+        #06070f;
+      color: #f8fafc;
+    }
+    .gate-card {
+      max-width: 460px;
+      margin: 8px auto;
+      background: rgba(17, 21, 36, 0.94);
+      border: 1.6px solid rgba(255, 215, 0, 0.65);
+      border-radius: 26px;
+      padding: 20px 18px;
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.65), 0 0 28px rgba(255, 215, 0, 0.16);
+    }
+    .gate-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .gate-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .gate-brand img {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      border: 1.5px solid rgba(255, 215, 0, 0.6);
+    }
+    .gate-title {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1.15;
+    }
+    .gate-sub {
+      font-size: 12px;
+      color: #cbd5e1;
+      font-weight: 600;
+    }
+    .install-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1.3px solid var(--cyan);
+      background: rgba(0, 240, 255, 0.13);
+      color: var(--cyan);
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .tokens-toggle-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 215, 0, 0.45);
+      border-radius: 16px;
+      padding: 10px 12px;
+      margin: 12px 0;
+    }
+    .btn-gold, .btn-pink, .btn-cyan, .btn-outline {
+      width: 100%;
+      border: none;
+      border-radius: 15px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform 0.12s ease;
+    }
+    .btn-gold:active, .btn-pink:active, .btn-cyan:active, .btn-outline:active { transform: scale(0.98); }
+    .btn-gold {
+      background: linear-gradient(135deg, #ffd700, #f59e0b);
+      color: #090b12;
+      box-shadow: 0 8px 22px rgba(255, 215, 0, 0.3);
+    }
+    .btn-pink {
+      background: linear-gradient(135deg, #ff007f, #a855f7);
+      color: #ffffff;
+      box-shadow: 0 8px 22px rgba(255, 0, 127, 0.32);
+    }
+    .btn-cyan {
+      background: linear-gradient(135deg, #00f0ff, #0284c7);
+      color: #041019;
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: #f8fafc;
+      border: 1.2px solid rgba(255, 255, 255, 0.22);
+    }
+    .divider-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0 10px;
+      color: #94a3b8;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .divider-label::before, .divider-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+    .code-row {
+      display: flex;
+      gap: 8px;
+    }
+    .input-dark {
+      flex: 1;
+      background: #0b0e18;
+      border: 1.2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 13px;
+      padding: 11px 12px;
+      color: #fff;
+      font-size: 13.5px;
+      outline: none;
+    }
+    .input-dark:focus { border-color: var(--gold); }
+    .error-msg {
+      color: #ff6b7a;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 8px;
+      display: none;
+    }
+    .bars-list {
+      margin-top: 14px;
+      display: grid;
+      gap: 7px;
+    }
+    .bar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 11px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 12px;
+    }
+    .bar-item a {
+      color: var(--cyan);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 11.5px;
+    }
+
+    /* Escenario Principal de Ruleta */
+    #appStage {
+      display: none;
+      position: fixed;
+      inset: 0;
+      flex-direction: column;
+      padding: env(safe-area-inset-top, 6px) 8px env(safe-area-inset-bottom, 8px);
+      z-index: 10;
+    }
+    #bubblesLayer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .floating-bubble {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 16px currentColor;
+      border: 2.2px solid currentColor;
+      opacity: 0.78;
+      will-change: transform;
+    }
+
+    .stage-front {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Barras superiores */
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding: 2px 0;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      border: 1.3px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+    .pill-btn.active-retos {
+      border-color: var(--pink);
+      background: rgba(255, 0, 127, 0.2);
+    }
+    .pill-btn.active-sorteo {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.18);
+    }
+    .icon-action {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 18px;
+      padding: 4px 8px;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    /* Banner Activo VIP */
+    .vip-active-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #181409;
+      border: 1.4px solid rgba(255, 215, 0, 0.85);
+      border-radius: 15px;
+      padding: 5px 10px;
+      margin: 3px 2px;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.22);
+    }
+    .vip-bar-info { flex: 1; min-width: 0; }
+    .vip-bar-title {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .vip-bar-timer {
+      font-size: 10.5px;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    .mini-token-btn {
+      padding: 4px 8px;
+      border-radius: 9px;
+      font-size: 10px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 215, 0, 0.7);
+      background: rgba(255, 215, 0, 0.18);
+      color: var(--gold);
+      cursor: pointer;
+    }
+    .vip-close-x {
+      background: rgba(255, 68, 85, 0.16);
+      border: 1px solid rgba(255, 68, 85, 0.6);
+      color: #ff5566;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    /* Selector Maestro de Intensidad */
+    .intensity-bar {
+      display: flex;
+      justify-content: space-around;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 4px 6px;
+      margin: 2px 10px;
+    }
+    .int-item {
+      flex: 1;
+      text-align: center;
+      padding: 4px 6px;
+      border-radius: 11px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--subtext);
+      cursor: pointer;
+      border: 1.2px solid transparent;
+    }
+    .int-item.selected {
+      background: rgba(139, 92, 246, 0.28);
+      border-color: var(--purple);
+      color: #fff;
+      font-weight: 900;
+    }
+    body.theme-day .int-item.selected {
+      background: #7c3aed;
+      color: #fff;
+    }
+    .sweep-green {
+      border-color: var(--green) !important;
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.55);
+      animation: pulseSweep 1.2s infinite alternate;
+    }
+    @keyframes pulseSweep {
+      from { box-shadow: 0 0 4px rgba(0, 255, 136, 0.35); }
+      to { box-shadow: 0 0 16px rgba(0, 255, 136, 0.9); }
+    }
+
+    /* Logo + Letrero Neón del Bar */
+    .brand-header {
+      text-align: center;
+      padding: 2px 0;
+    }
+    .brand-header img {
+      height: 68px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+    .bar-neon-sign {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 2px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: rgba(13, 2, 33, 0.88);
+      border: 1.6px solid var(--gold);
+      color: #ffe57f;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      box-shadow: 0 0 14px rgba(255, 215, 0, 0.48), 0 0 20px rgba(255, 0, 127, 0.3);
+    }
+
+    /* Área Central de Ruleta */
+    .wheel-wrap {
+      flex: 1;
+      min-height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 4px;
+    }
+    .wheel-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #wheelCanvas {
+      display: block;
+      opacity: 0.92;
+      cursor: pointer;
+    }
+    .wheel-pointer {
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 34px;
+      background: var(--cyan);
+      border-radius: 0 0 13px 13px;
+      box-shadow: 0 0 14px var(--cyan);
+      pointer-events: none;
+      z-index: 3;
+    }
+    .spin-center-btn {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, var(--pink), var(--cyan));
+      color: #fff;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 1.2px;
+      cursor: pointer;
+      box-shadow: 0 0 22px rgba(255, 0, 127, 0.6);
+      z-index: 4;
+    }
+
+    /* Controles Inferiores */
+    .bottom-area {
+      padding: 4px 4px 2px;
+      text-align: center;
+    }
+    .turn-hint {
+      font-size: 11px;
+      color: var(--subtext);
+      font-weight: 700;
+      margin-bottom: 4px;
+      min-height: 15px;
+    }
+    .pills-wrap {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .status-badge {
+      padding: 1px 5px;
+      border-radius: 6px;
+      font-size: 9px;
+      font-weight: 900;
+      color: #fff;
+      background: #475569;
+    }
+    .status-badge.on { background: var(--pink); }
+    .bottom-row {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+    }
+    .ctrl-btn {
+      border-radius: 14px;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1.2px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .ctrl-btn.players-btn {
+      flex: 1;
+      background: #1e2538;
+      color: #fff;
+    }
+    body.theme-day .ctrl-btn.players-btn {
+      background: #0284c7;
+      color: #fff;
+    }
+
+    /* Modales */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      background: rgba(0, 0, 0, 0.74);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-card {
+      width: 100%;
+      max-width: 420px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--surface);
+      color: var(--text);
+      border: 1.8px solid var(--pink);
+      border-radius: 26px;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+    .winner-avatar {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      margin: 0 auto 10px;
+      border: 3px solid var(--cyan);
+    }
+    .challenge-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      font-size: 15.5px;
+      font-weight: 600;
+      line-height: 1.42;
+      margin: 14px 0;
+    }
+    body.theme-day .challenge-box {
+      background: #f1f5f9;
+    }
+    .player-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      margin-bottom: 6px;
+    }
+    .player-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      background-size: cover;
+      background-position: center;
+      flex-shrink: 0;
+    }
+    .podium-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .podium-col {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 6px;
+      text-align: center;
+    }
+
+    /* Escáner de Cámara QR */
+    #qrScannerModal video {
+      width: 100%;
+      border-radius: 18px;
+      background: #000;
+      max-height: 54vh;
+      object-fit: cover;
+    }
+    .scanner-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 2px solid var(--gold);
+    }
+    .laser-line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      height: 3px;
+      background: var(--gold);
+      box-shadow: 0 0 12px var(--gold);
+      animation: scanMove 1.8s ease-in-out infinite alternate;
+    }
+    @keyframes scanMove {
+      from { top: 8%; }
+      to { top: 90%; }
+    }
+
+    .plan-mini {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 15px;
+      padding: 12px;
+      margin-bottom: 9px;
+    }
+    .plan-mini.pro {
+      border-color: var(--pink);
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.15), rgba(139, 92, 246, 0.12));
+    }
+    .toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #10b981;
+      color: #04130d;
+      font-weight: 900;
+      font-size: 12.5px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      z-index: 120;
+      display: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      max-width: 92vw;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Aviso automático si se abre dentro de Instagram o WhatsApp -->
+  <div id="inAppBrowserBanner" class="inapp-banner">
+    ⚠️ Estás en el navegador interno de una red social. Para usar la cámara QR e instalar la app, toca <strong>⋮</strong> arriba y elige <strong>"Abrir en Chrome / Safari"</strong>.
+  </div>
+
+  <!-- 1. COMPUERTA EXCLUSIVA ZONA VIP (Y PANTALLA DE CIERRE 00:00) -->
+  <div id="vipGateScreen" class="full-screen-gate">
+    <div class="gate-card">
+      <div class="gate-top">
+        <div class="gate-brand">
+          <img src="../logo.png" alt="Logo Ruleta By4K">
+          <div>
+            <div class="gate-title">👑 Ruleta By4K VIP</div>
+            <div class="gate-sub">Web App Oficial para Bares Aliados</div>
+          </div>
+        </div>
+        <button id="btnInstallGate" class="install-chip" type="button">📲 Instalar</button>
+      </div>
+
+      <!-- Bloque normal de bienvenida VIP -->
+      <div id="gateWelcomeBlock">
+        <p style="font-size:12.5px;color:#cbd5e1;line-height:1.4;">
+          Esta versión web ultra-liviana funciona <strong>exclusivamente en nuestros Bares Aliados</strong> (Android y iPhone). Escanea el código QR de tu mesa para jugar <strong>100% gratis</strong>.
+        </p>
+      </div>
+
+      <!-- Bloque especial cuando la sesión llega a 00:00 -->
+      <div id="gateExpiredConversionBlock" style="display:none;margin-bottom:14px;">
+        <div style="background:rgba(255,68,85,0.14);border:1px solid rgba(255,68,85,0.55);border-radius:14px;padding:10px 12px;margin-bottom:12px;text-align:center;">
+          <div style="font-weight:900;color:#ff808b;font-size:14px;">⏰ Tu sesión VIP en mesa ha finalizado (00:00)</div>
+          <div style="font-size:11.5px;color:#cbd5e1;margin-top:3px;">¡Gracias por jugar hoy! Llévate Ruleta By4K a tus fiestas personales:</div>
+        </div>
+
+        <div class="plan-mini">
+          <div style="font-size:11px;font-weight:900;color:var(--cyan);">NIVEL 1 • DESCARGA GRATUITA ($0)</div>
+          <div style="font-size:11.5px;color:#cbd5e1;margin-top:3px;">56 retos seleccionados, Con Retos y Solo Sorteo, 2 voces reales (Julio y Sofía), grabación de notas de voz y Zona VIP gratis en bares.</div>
+        </div>
+
+        <div class="plan-mini">
+          <div style="display:flex;justify-content:space-between;font-weight:900;font-size:12.5px;">
+            <span style="color:var(--gold);">⚡ Pase Fiesta 48 Horas</span>
+            <span>$4.000 COP</span>
+          </div>
+          <div style="font-size:11.5px;color:#cbd5e1;margin-top:3px;">Desbloquea los 185 retos en 9 categorías, Modo Picante directo sin QR, las 4 voces (Mateo y Valeria Paisa), 25 retos propios y cero anuncios por 48h.</div>
+        </div>
+
+        <div class="plan-mini pro">
+          <div style="display:flex;justify-content:space-between;font-weight:900;font-size:12.5px;">
+            <span style="color:#ff6ec7;">👑 Modo Fiesta PRO Vitalicio</span>
+            <span>$9.900 COP</span>
+          </div>
+          <div style="font-size:11.5px;color:#f1f5f9;margin-top:3px;">Un solo pago único para siempre en Google Play. Todo el catálogo de 185 retos, Modo Picante, las 4 voces y 25 retos personalizados de por vida.</div>
+        </div>
+
+        <a id="btnPlayStoreConversion" class="btn-pink" href="https://play.google.com/store/apps/details?id=com.by4k.ruletasocial" target="_blank" rel="noopener" style="margin-top:6px;">
+          📲 Descargar Ruleta By4K en Google Play
+        </a>
+        <a class="btn-outline" href="https://www.instagram.com/By4K.app" target="_blank" rel="noopener" style="margin-top:8px;font-size:12.5px;padding:10px;">
+          📸 Síguenos en Instagram @By4K.app
+        </a>
+      </div>
+
+      <!-- Switch Fichas Físicas -->
+      <div class="tokens-toggle-box">
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#fff;">🎖️ Fichas Físicas en Mesa</div>
+          <div id="gateTokensSub" style="font-size:11px;color:#94a3b8;">Pin Rey, Escudo, Moneda 3D y Ficha de Veto</div>
+        </div>
+        <input id="chkGateTokens" type="checkbox" checked style="width:20px;height:20px;accent-color:#ffd700;cursor:pointer;">
+      </div>
+
+      <button id="btnScanBarQr" class="btn-gold" type="button">
+        📷 Escanear Código QR de un Bar
+      </button>
+
+      <div class="divider-label">O ingresa llave del hablador</div>
+
+      <div class="code-row">
+        <input id="inpBackupCode" class="input-dark" type="text" placeholder="Código o llave de respaldo" autocomplete="off">
+        <button id="btnValidateCode" class="btn-gold" type="button" style="width:auto;padding:0 16px;">Activar</button>
+      </div>
+      <div id="gateError" class="error-msg"></div>
+
+      <!-- Directorio en vivo de Bares Aliados -->
+      <div style="margin-top:16px;">
+        <div style="font-size:12px;font-weight:900;color:var(--gold);">📍 Bares Aliados VIP (Juega Gratis en Mesa):</div>
+        <div id="alliedBarsContainer" class="bars-list"></div>
+      </div>
+
+      <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:#94a3b8;">
+        <a href="../index.html" style="color:var(--cyan);text-decoration:none;font-weight:700;">← Sitio Principal</a>
+        <a href="https://www.instagram.com/By4K.app" target="_blank" rel="noopener" style="color:#ff7ad9;text-decoration:none;font-weight:700;">@By4K.app</a>
+        <span>🔞 +18</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. ESCENARIO INTERACTIVO ZONA VIP ACTIVA -->
+  <div id="appStage">
+    <div id="bubblesLayer"></div>
+
+    <div class="stage-front">
+      <!-- Fila 1: Con Retos ⇄ Solo Sorteo + Instalar -->
+      <div class="top-row">
+        <button id="btnToggleMode" class="pill-btn active-retos" type="button">
+          🎲 Con Retos ⇄
+        </button>
+        <button id="btnCycleTheme" class="pill-btn" type="button">
+          🎉 Neón
+        </button>
+        <button id="btnInstallTop" class="pill-btn" type="button" style="border-color:var(--cyan);color:var(--cyan);">
+          📲 Instalar
+        </button>
+      </div>
+
+      <!-- Fila 2: Podio + Consumo Responsable + Guía Fichas -->
+      <div id="topActionsRetos" class="top-row">
+        <button id="btnOpenPodium" class="icon-action" type="button" title="Podio de la Noche">🏆</button>
+        <button id="btnOpenLegal" class="icon-action" type="button" title="Consumo Responsable +18">🔞</button>
+        <button id="btnOpenTokensGuide" class="icon-action" type="button" title="Guía de Fichas VIP">🎖️</button>
+      </div>
+
+      <!-- Banner Dorado Activo con Contador Anti-Trampa y Salida [ ✕ ] -->
+      <div class="vip-active-bar">
+        <span style="font-size:15px;">👑</span>
+        <div class="vip-bar-info">
+          <div id="lblActiveBarName" class="vip-bar-title">Bar VIP</div>
+          <div id="lblRemainingTimer" class="vip-bar-timer">⏳ 12:00:00 restantes</div>
+        </div>
+        <button id="btnBannerTokens" class="mini-token-btn" type="button">🎖️ Fichas: ON</button>
+        <button id="btnVipExitX" class="vip-close-x" type="button" title="Salir de Zona VIP">✕</button>
+      </div>
+
+      <!-- Barra Maestra de Intensidad -->
+      <div id="intensityBar" class="intensity-bar">
+        <div class="int-item selected" data-level="1">🍸 Chill</div>
+        <div id="intLevel2" class="int-item" data-level="2">🍸🍸 Calentando</div>
+        <div id="intLevel3" class="int-item" data-level="3">🍸🍸🍸 Rave</div>
+      </div>
+
+      <!-- Logo y Letrero Neón del Establecimiento -->
+      <div class="brand-header">
+        <img src="../logo.png" alt="Ruleta By4K">
+        <div>
+          <span id="lblBarNeonSign" class="bar-neon-sign">🍸 BAR VIP ✨</span>
+        </div>
+      </div>
+
+      <!-- Lienzo Vectorial de la Ruleta -->
+      <div id="wheelContainer" class="wheel-wrap">
+        <div id="wheelBox" class="wheel-box">
+          <div class="wheel-pointer"></div>
+          <canvas id="wheelCanvas" width="320" height="320"></canvas>
+          <button id="btnCenterSpin" class="spin-center-btn" type="button">GIRAR</button>
+        </div>
+      </div>
+
+      <!-- Controles Inferiores -->
+      <div class="bottom-area">
+        <div id="lblTurnHint" class="turn-hint"></div>
+
+        <div class="pills-wrap">
+          <button id="btnEliminationPill" class="pill-btn" type="button">
+            💀 Eliminación <span id="bdgElim" class="status-badge">OFF</span>
+          </button>
+          <button id="btnPicanteVipPill" class="pill-btn" type="button">
+            🌶️ Picante VIP <span id="bdgPicanteVip" class="status-badge">OFF</span>
+          </button>
+        </div>
+
+        <div class="bottom-row">
+          <button id="btnShuffle" class="ctrl-btn" type="button">🔀 Barajar</button>
+          <button id="btnParticipants" class="ctrl-btn players-btn" type="button">👥 Participantes (4)</button>
+          <button id="btnSettings" class="ctrl-btn" type="button">⚙️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GANADOR / RETO -->
+  <div id="winnerModal" class="modal-backdrop">
+    <div class="modal-card" id="winnerModalCard"></div>
+  </div>
+
+  <!-- MODAL PARTICIPANTES (SOLO FOTO SELFIE EN MEMORIA DE SESIÓN) -->
+  <div id="participantsModal" class="modal-backdrop">
+    <div class="modal-card" style="border-color:var(--cyan);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3 style="font-size:17px;font-weight:900;">👥 Participantes de la Mesa</h3>
+        <button class="icon-action" type="button" onclick="closeModal('participantsModal')">✕</button>
+      </div>
+      <div style="display:flex;gap:7px;margin-bottom:10px;">
+        <input id="inpNewPlayerName" class="input-dark" type="text" maxlength="22" placeholder="Nombre del jugador(a)">
+        <label style="display:inline-flex;align-items:center;justify-content:center;padding:0 11px;border-radius:12px;background:rgba(0,240,255,0.16);border:1px solid var(--cyan);cursor:pointer;" title="Selfie opcional (se borra al cerrar sesión)">
+          📷
+          <input id="inpNewPlayerPhoto" type="file" accept="image/*" capture="user" style="display:none;">
+        </label>
+        <button id="btnAddPlayer" class="btn-cyan" type="button" style="width:auto;padding:0 14px;">+ Añadir</button>
+      </div>
+      <div id="lblPendingPhoto" style="font-size:11px;color:var(--green);margin-bottom:8px;display:none;">✓ Foto lista para este participante</div>
+      <div id="playersListContainer" style="max-height:46vh;overflow-y:auto;"></div>
+      <p style="font-size:10.5px;color:var(--subtext);margin-top:8px;text-align:center;">
+        🔒 Privacidad VIP: las fotos viven solo en memoria temporal y se borran al terminar la sesión. Las notas de voz con micrófono son exclusivas de la App Android.
+      </p>
+    </div>
+  </div>
+
+  <!-- MODAL AJUSTES (2 VOCES ACTIVAS JULIO Y SOFÍA + 8 SONIDOS + COMODINES) -->
+  <div id="settingsModal" class="modal-backdrop">
+    <div class="modal-card" style="border-color:var(--purple);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <h3 style="font-size:17px;font-weight:900;">⚙️ Ajustes de Ruleta y Audio</h3>
+        <button class="icon-action" type="button" onclick="closeModal('settingsModal')">✕</button>
+      </div>
+
+      <label style="font-size:12.5px;font-weight:800;display:block;margin-bottom:6px;">🎵 Sonido de Giro (8 Presets Oficiales):</label>
+      <select id="selSoundPreset" class="input-dark" style="width:100%;margin-bottom:12px;">
+        <option value="0">0. Silencio (Mute)</option>
+        <option value="1" selected>1. Ruleta Clásica (Casino Ticks)</option>
+        <option value="2">2. Tic-Tac Metrónomo</option>
+        <option value="3">3. Tambores de Suspenso</option>
+        <option value="4">4. Sintetizador Sci-Fi</option>
+        <option value="5">5. Campanas Mágicas</option>
+        <option value="6">6. Motor Acelerando</option>
+        <option value="7">7. Percusión Beatbox</option>
+        <option value="8">8. Maracas Fiesta Tropical</option>
+      </select>
+
+      <label style="font-size:12.5px;font-weight:800;display:block;margin-bottom:6px;">🎙️ Voz del Animador (Web VIP):</label>
+      <div id="voiceSelectorBox" style="display:grid;gap:6px;margin-bottom:12px;">
+        <div class="player-item" data-voice="0" style="cursor:pointer;border:1.4px solid transparent;" onclick="selectPwaVoice(0)">
+          <span>🎙️</span>
+          <div style="flex:1;">
+            <div style="font-size:12.5px;font-weight:800;">Hombre Animador (Julio)</div>
+            <div style="font-size:10.5px;color:var(--subtext);">Dinámico y fiestero • Activa en Web VIP</div>
+          </div>
+          <span id="chkVoice0">⚪</span>
+        </div>
+        <div class="player-item" data-voice="2" style="cursor:pointer;border:1.4px solid var(--pink);" onclick="selectPwaVoice(2)">
+          <span>🎉</span>
+          <div style="flex:1;">
+            <div style="font-size:12.5px;font-weight:800;">Mujer Fiestera (Sofía)</div>
+            <div style="font-size:10.5px;color:var(--subtext);">Alegre y brillante • Activa en Web VIP</div>
+          </div>
+          <span id="chkVoice2">🟢</span>
+        </div>
+        <div class="player-item" style="opacity:0.68;">
+          <span>📲</span>
+          <div style="flex:1;">
+            <div style="font-size:12px;font-weight:700;">Mateo Seductor &amp; Valeria Paisa</div>
+            <div style="font-size:10px;color:var(--subtext);">Exclusivas en la App Ruleta By4K de Google Play</div>
+          </div>
+        </div>
+      </div>
+
+      <label style="font-size:12.5px;font-weight:800;display:block;margin-bottom:4px;">
+        ⏱️ Duración máxima de giro: <span id="lblSpinMaxSec">7s</span>
+      </label>
+      <input id="rngSpinSec" type="range" min="3" max="16" value="7" style="width:100%;accent-color:var(--pink);margin-bottom:12px;">
+
+      <div id="wildcardsSettingsBlock">
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:13px;font-weight:700;">
+          <span>💣 Comodín Bomba Colectiva</span>
+          <input id="chkBombWildcard" type="checkbox" checked style="width:18px;height:18px;accent-color:var(--pink);">
+        </label>
+        <label style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;font-size:13px;font-weight:700;">
+          <span>👑 Comodín El Dictador</span>
+          <input id="chkDictatorWildcard" type="checkbox" checked style="width:18px;height:18px;accent-color:var(--gold);">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PODIO / CONFIRMACIÓN SALIDA VIP / GUÍAS -->
+  <div id="infoModal" class="modal-backdrop">
+    <div class="modal-card" id="infoModalCard" style="border-color:var(--gold);"></div>
+  </div>
+
+  <!-- MODAL ESCÁNER CÁMARA QR (MESA Y MESERO) -->
+  <div id="qrScannerModal" class="modal-backdrop">
+    <div class="modal-card" style="border-color:var(--gold);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h3 id="lblScannerTitle" style="font-size:16px;font-weight:900;color:var(--gold);">📷 Escanear QR de Mesa VIP</h3>
+        <button class="icon-action" type="button" onclick="stopQrScanner()">✕</button>
+      </div>
+      <div class="scanner-frame">
+        <video id="qrVideo" playsinline muted></video>
+        <div class="laser-line"></div>
+      </div>
+      <canvas id="qrHiddenCanvas" style="display:none;"></canvas>
+      <p id="lblScannerHint" style="font-size:12px;color:var(--subtext);text-align:center;margin:10px 0;">
+        Apunta la cámara al código QR del hablador de tu mesa o del carné del mesero.
+      </p>
+      <div style="display:flex;gap:8px;">
+        <button id="btnToggleTorch" class="btn-outline" type="button" style="padding:10px;font-size:12px;">🔦 Linterna</button>
+        <label class="btn-outline" style="padding:10px;font-size:12px;cursor:pointer;">
+          🖼️ Leer desde Foto
+          <input id="inpQrImageFallback" type="file" accept="image/*" capture="environment" style="display:none;">
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL INSTALACIÓN PWA (ESPECIAL IPHONE / ANDROID) -->
+  <div id="installGuideModal" class="modal-backdrop">
+    <div class="modal-card" style="border-color:var(--cyan);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h3 style="font-size:17px;font-weight:900;color:var(--cyan);">📲 Instalar Ruleta By4K VIP</h3>
+        <button class="icon-action" type="button" onclick="closeModal('installGuideModal')">✕</button>
+      </div>
+      <div id="installGuideBody" style="font-size:13px;line-height:1.5;color:var(--text);"></div>
+    </div>
+  </div>
+
+  <div id="toastMsg" class="toast"></div>
+
+  <script src="jsqr.min.js"></script>
+  <script src="challenges_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

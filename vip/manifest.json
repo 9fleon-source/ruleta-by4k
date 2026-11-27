@@ -1,0 +1,27 @@
+{
+  "id": "/ruleta-by4k/vip/",
+  "name": "Ruleta By4K — Zona VIP Bares",
+  "short_name": "Ruleta By4K VIP",
+  "description": "Zona VIP oficial de Ruleta By4K para bares y discotecas aliadas (+18). Escanea el QR de tu mesa y juega gratis.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070811",
+  "theme_color": "#070811",
+  "lang": "es-CO",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
